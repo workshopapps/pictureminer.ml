@@ -1,0 +1,7 @@
+# python dirs
+__pycache__/
+app-env/
+.deta/
+
+# environment variables
+*.env
