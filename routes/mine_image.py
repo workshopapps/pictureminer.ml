@@ -1,4 +1,5 @@
 from fastapi import APIRouter, UploadFile
+from generator import captioner_generator
 
 router = APIRouter(
 	prefix='/api/microservice', 
@@ -8,11 +9,13 @@ router = APIRouter(
 
 @router.post('/content')
 async def get_image_content(image: UploadFile):
-    image_filename, image_body = image.filename, image.file
+    """
+    Receives an image and returns the caption of the image
+    """
+    request_object_content = await image.read()
 
-    # call function to caption/generate text from model sub dir
-    # possibly async
-    # captioned_text = generate_caption(image_filename, image_body)
-    captioned_text = '<dummy captioned text>'
+    # get the image content
+    caption = captioner_generator.predict(request_object_content)
 
-    return { 'text_description': captioned_text }
+    return { 'text_description': caption }
+    
