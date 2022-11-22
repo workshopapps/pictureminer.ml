@@ -43,7 +43,7 @@ $ docker run -p 8000:8000 caption-api
 ## **Endpoints**
 ## Docs
 ---
-[localhost:8000/docs](localhost:8000/docs)
+http://localhost:8000/docs
 
 ## Caption Generator
-[localhost:8000/caption-generator](localhost:8000/caption-generator)
+http://localhost:8000/caption-generator
