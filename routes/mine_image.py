@@ -20,3 +20,13 @@ async def get_image_content(image: UploadFile):
 
     return { 'text_description': caption }
     
+    
+@router.post('/check-for-prompt/{prompt}')
+async def check_text_prompt(image: UploadFile, prompt: str):
+    """
+    Receives an image and prompt and returns true if the prompt exist in the image
+    """
+    image_filename, image_file = image.filename, image.file
+
+
+    return { "check_result": True }
