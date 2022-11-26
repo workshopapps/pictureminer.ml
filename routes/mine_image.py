@@ -26,10 +26,8 @@ async def check_text_prompt(image: UploadFile, prompt: str):
     """
     Receives an image and prompt and returns true if the prompt exist in the image
     """
-    image_filename, image_file = image.filename, image.file
-    # check if image contains text prompt
-    # check_result = check_prompt(image_file, prompt)
-    check_result = False
-
-
-    return { "check_result": check_result }
+    request_object_content = await image.read()
+    caption = captioner_generator.predict(BytesIO(request_object_content))
+    check_result = captioner_generator.check_similarity(prompt, caption)
+    
+    return { 'prompt_exist': check_result,'caption': caption }
